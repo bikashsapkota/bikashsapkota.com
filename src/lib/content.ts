@@ -233,9 +233,3 @@ export const caseStudies: CaseStudy[] = [
     tags: ["MINLP", "Python", "APIs", "OpenADR"],
   },
 ];
-
-export const testimonial = {
-  quote: "one of the most dependable and inspiring colleagues",
-  author: "Abhijeet Anand",
-  context: "GridSolutions colleague",
-};

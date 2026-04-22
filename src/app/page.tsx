@@ -9,7 +9,6 @@ import {
   profile,
   services,
   skillGroups,
-  testimonial,
 } from "@/lib/content";
 
 const navItems = [
@@ -224,19 +223,6 @@ export default function Home() {
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <blockquote className="border-l-4 border-accent bg-surface p-8">
-            <p className="text-2xl font-semibold leading-9 text-foreground">
-              &ldquo;{testimonial.quote}&rdquo;
-            </p>
-            <footer className="mt-5 text-muted">
-              {testimonial.author}, {testimonial.context}
-            </footer>
-          </blockquote>
         </div>
       </section>
 
