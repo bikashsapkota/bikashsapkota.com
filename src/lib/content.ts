@@ -58,7 +58,8 @@ export const profile = {
 
 export const heroVisual: HeroVisual = {
   src: "/images/urban-gps-planning.png",
-  alt: "Urban aerial map visualization with GPS movement arcs, road intensity corridors, and footfall hotspots.",
+  alt:
+    "Urban aerial map visualization with orange GPS movement arcs, blue road intensity corridors, and magenta footfall hotspots.",
 };
 
 export const links: LinkItem[] = [
