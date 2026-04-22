@@ -318,7 +318,20 @@ export default function Home() {
             <article key={`${item.degree}-${item.institution}`} className="border border-line bg-surface p-6">
               <p className="text-sm font-medium text-accent-strong">{item.location}</p>
               <h3 className="mt-3 text-2xl font-semibold leading-8">{item.degree}</h3>
-              <p className="mt-2 text-muted">{item.institution}</p>
+              <p className="mt-2 text-muted">
+                {item.institutionUrl ? (
+                  <a
+                    className="font-medium text-foreground underline decoration-orange-300/60 underline-offset-4 transition hover:text-accent"
+                    href={item.institutionUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.institution}
+                  </a>
+                ) : (
+                  item.institution
+                )}
+              </p>
               <p className="mt-5 max-w-3xl leading-7 text-muted">{item.description}</p>
             </article>
           ))}

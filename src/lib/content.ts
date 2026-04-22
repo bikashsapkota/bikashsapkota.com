@@ -30,6 +30,7 @@ export type SkillGroup = {
 export type EducationItem = {
   degree: string;
   institution: string;
+  institutionUrl?: string;
   location: string;
   description: string;
 };
@@ -226,6 +227,7 @@ export const education: EducationItem[] = [
   {
     degree: "BSc CSIT",
     institution: "Deerwalk Institute of Technology, Tribhuvan University",
+    institutionUrl: "https://deerwalk.edu.np/DWIT/",
     location: "Nepal",
     description:
       "Bachelor of Science in Computer Science and Information Technology from Deerwalk Institute of Technology, affiliated with Tribhuvan University, grounding later work in software systems, data platforms, and applied machine learning.",
@@ -238,7 +240,7 @@ export const caseStudies: CaseStudy[] = [
     context: "GPS-scale geospatial pipelines",
     company: {
       label: "LocationMind",
-      href: "https://locationmind.com/",
+      href: "https://locationmind.com/#contact-us",
     },
     problem:
       "Raw mobility inputs are noisy, high-volume, and difficult to reuse across research, consulting, analytics, and product workflows.",
@@ -257,7 +259,7 @@ export const caseStudies: CaseStudy[] = [
     context: "Urban planning and location intelligence",
     company: {
       label: "LocationMind",
-      href: "https://locationmind.com/",
+      href: "https://locationmind.com/#contact-us",
     },
     problem:
       "Urban and mobility teams need reliable views of movement patterns without manually interpreting raw GPS trajectories.",
