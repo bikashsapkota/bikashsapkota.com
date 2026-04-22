@@ -205,8 +205,8 @@ export default function Home() {
       <section id="work" className="border-b border-line bg-surface">
         <SectionHeader
           eyebrow="Case studies"
-          title="Public-safe examples from recent company work."
-          description="These describe technical shape and outcomes without client names, internal systems, or proprietary details."
+          title="Selected examples from recent company work."
+          description="A concise view of technical scope, outcomes, and delivery patterns across geospatial data, analytics, and optimization systems."
         />
         <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-20 lg:grid-cols-3">
           {caseStudies.map((study) => (
