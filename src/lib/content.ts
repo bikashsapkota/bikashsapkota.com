@@ -190,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Mobility Data Platform",
     context: "Geospatial data engineering",
     description:
-      "A public-safe case study based on recent work building ingestion and transformation workflows for mobility datasets.",
+      "Built ingestion and transformation workflows that turn raw mobility datasets into reusable analytical foundations.",
     outcomes: [
       "Standardized raw location inputs into reusable analytical datasets.",
       "Added quality checks, normalization, aggregation, and geospatial enrichment.",
@@ -202,7 +202,7 @@ export const caseStudies: CaseStudy[] = [
     title: "People-Flow Analytics Outputs",
     context: "Location intelligence products",
     description:
-      "A generic project frame for turning movement data into stakeholder-ready analytical outputs.",
+      "Turned movement data into stakeholder-ready analytical outputs for research, consulting, and product workflows.",
     outcomes: [
       "Modeled people-flow patterns for dashboards, maps, and CSV exports.",
       "Supported research, consulting, and product workflows with reproducible data outputs.",
@@ -214,7 +214,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Energy Pricing Optimization",
     context: "AI and optimization systems",
     description:
-      "A non-proprietary case study based on optimization and integration work in electricity pricing systems.",
+      "Implemented optimization and integration workflows for electricity pricing systems.",
     outcomes: [
       "Implemented optimization modules using Mixed-Integer Nonlinear Programming.",
       "Built API interfaces for client-platform integration.",
