@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type NavItem = {
   label: string;
@@ -9,6 +9,8 @@ type NavItem = {
 
 export function ActiveNav({ items }: { items: NavItem[] }) {
   const [activeHref, setActiveHref] = useState("");
+  const selectedHref = useRef("");
+  const selectedUntil = useRef(0);
 
   useEffect(() => {
     let frame = 0;
@@ -16,6 +18,11 @@ export function ActiveNav({ items }: { items: NavItem[] }) {
     const updateActiveSection = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
+        if (selectedHref.current && Date.now() < selectedUntil.current) {
+          setActiveHref(selectedHref.current);
+          return;
+        }
+
         const scrollPosition = window.scrollY + 90;
         let nextActiveHref = "";
 
@@ -65,7 +72,11 @@ export function ActiveNav({ items }: { items: NavItem[] }) {
                 : "text-muted hover:text-accent after:scale-x-0 hover:after:scale-x-100",
             ].join(" ")}
             href={item.href}
-            onClick={() => setActiveHref(item.href)}
+            onClick={() => {
+              selectedHref.current = item.href;
+              selectedUntil.current = Date.now() + 2500;
+              setActiveHref(item.href);
+            }}
           >
             {item.label}
           </a>

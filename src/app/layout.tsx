@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bikashsapkota.com"),
-  title: "Bikash Sapkota | Geospatial Data Engineer",
+  title: "Bikash Sapkota | Geospatial Big Data Engineer",
   description:
-    "Bikash Sapkota builds geospatial big data platforms, AI/ML systems, optimization workflows, and cloud data applications from Tokyo, Japan.",
+    "Bikash Sapkota builds geospatial big data pipelines, mobility analytics systems, and cloud data products with Python, Spark, Kafka, AWS, ClickHouse, Kubernetes, H3, and GeoPandas.",
   authors: [{ name: "Bikash Sapkota" }],
   creator: "Bikash Sapkota",
   openGraph: {
-    title: "Bikash Sapkota | Geospatial Data Engineer",
+    title: "Bikash Sapkota | Geospatial Big Data Engineer",
     description:
-      "Geospatial big data engineer building data platforms for smart cities and urban planning.",
+      "Geospatial big data engineer building mobility data platforms, spatial analytics systems, and data products for smart cities and urban planning.",
     url: "https://bikashsapkota.com",
     siteName: "Bikash Sapkota",
     locale: "en_US",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Bikash Sapkota | Geospatial Data Engineer",
+    title: "Bikash Sapkota | Geospatial Big Data Engineer",
     description:
-      "Geospatial big data engineer building data platforms for smart cities and urban planning.",
+      "Geospatial big data engineer building mobility data platforms and spatial analytics systems.",
   },
 };
 

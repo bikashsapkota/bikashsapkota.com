@@ -4,6 +4,11 @@ export type LinkItem = {
   isPrimary?: boolean;
 };
 
+export type MetricItem = {
+  value: string;
+  label: string;
+};
+
 export type ExperienceItem = {
   role: string;
   company: string;
@@ -11,24 +16,21 @@ export type ExperienceItem = {
   employment: string;
   period: string;
   location: string;
+  summary: string;
   highlights: string[];
   skills: string[];
 };
 
 export type SkillGroup = {
   title: string;
-  items: string[];
+  description: string;
+  tools: string[];
 };
 
 export type EducationItem = {
   degree: string;
   institution: string;
   location: string;
-  description: string;
-};
-
-export type ServiceItem = {
-  title: string;
   description: string;
 };
 
@@ -39,9 +41,25 @@ export type CaseStudy = {
     label: string;
     href: string;
   };
+  problem: string;
+  solution: string;
+  impact: string[];
+  stack: string[];
+  architecture: string[];
+  githubUrl?: string;
+};
+
+export type ArchitectureSystem = {
+  title: string;
   description: string;
-  outcomes: string[];
-  tags: string[];
+  flow: string[];
+  principles: string[];
+};
+
+export type InsightItem = {
+  title: string;
+  description: string;
+  status: string;
 };
 
 export type HeroVisual = {
@@ -52,14 +70,18 @@ export type HeroVisual = {
 export const profile = {
   name: "Bikash Sapkota",
   role: "Geospatial Big Data Engineer",
-  headline: "Building data platforms for smart cities and urban planning.",
+  headline: "I build geospatial data platforms that turn mobility signals into reliable decisions.",
+  subheadline:
+    "Big data engineer focused on GPS-scale pipelines, spatial analytics, and production data products for smart cities, mobility, and urban planning teams.",
   location: "Tokyo, Japan",
   email: "hello@bikashsapkota.com",
   meetingUrl: "https://calendar.app.google/w4uhT4E225E8cjHj6",
   languages: ["English", "Nepali"],
   resumeUrl: null as string | null,
-  bio:
-    "I build production data systems across geospatial analytics, AI/ML, and optimization. My work spans mobility ETL/ELT pipelines, people-flow analysis, pricing optimization, OpenADR integrations, and OCR-driven document intelligence.",
+  valueProposition:
+    "I design systems that ingest high-volume location data, validate it, enrich it with spatial context, and ship it as analytics-ready datasets, dashboards, maps, and APIs.",
+  about:
+    "My work sits at the intersection of distributed data engineering and geospatial analytics. I care about the parts that make data products dependable: ingestion contracts, partitioning strategy, spatial indexing, reproducible transformations, cost-aware cloud execution, and clear outputs that technical and non-technical teams can trust.",
 };
 
 export const heroVisual: HeroVisual = {
@@ -90,6 +112,28 @@ export const links: LinkItem[] = [
   },
 ];
 
+export const metrics: MetricItem[] = [
+  { value: "8+", label: "years across data, ML, and production systems" },
+  { value: "GPS", label: "mobility pipelines and geospatial analytics" },
+  { value: "Cloud", label: "AWS-first data products and services" },
+  { value: "Tokyo", label: "based in Japan, working globally" },
+];
+
+export const techStack = [
+  "Python",
+  "Spark",
+  "Kafka",
+  "AWS S3",
+  "AWS Glue",
+  "ClickHouse",
+  "Kubernetes",
+  "H3",
+  "GeoPandas",
+  "ETL/ELT",
+  "REST APIs",
+  "OpenADR",
+];
+
 export const experience: ExperienceItem[] = [
   {
     role: "Big Data Engineer (GeoSpatial)",
@@ -98,14 +142,14 @@ export const experience: ExperienceItem[] = [
     employment: "Permanent",
     period: "Jan 2025 - Present",
     location: "Tokyo, Japan",
+    summary:
+      "Building mobility and geospatial data pipelines that transform raw GPS-scale inputs into people-flow analytics, map-ready outputs, and decision products.",
     highlights: [
-      "Design, build, and maintain scalable ingestion and ETL/ELT pipelines for mobility and geospatial datasets with reproducible data quality.",
-      "Implement validation, normalization, aggregation, geospatial joins, and time-series feature generation to make location data analysis-ready.",
-      "Develop analytical models and outputs for people-flow analysis, visualization, dashboards, maps, and CSV data products.",
-      "Partner with researchers, consultants, and product teams to support mobility use cases using people-flow focused AI models and features.",
-      "Improve monitoring, performance, cost, documentation, and governance across the data lifecycle.",
+      "Design ingestion, validation, normalization, aggregation, and geospatial enrichment workflows for mobility datasets.",
+      "Build time-series and spatial features for people-flow analysis, dashboards, maps, and CSV data products.",
+      "Improve reproducibility, monitoring, performance, documentation, and governance across the data lifecycle.",
     ],
-    skills: ["Amazon EC2", "Data Analysis", "ETL/ELT", "Geospatial joins", "Time-series features"],
+    skills: ["Python", "Spark", "AWS", "Geospatial joins", "Time-series features", "Data quality"],
   },
   {
     role: "AI Engineer",
@@ -114,14 +158,14 @@ export const experience: ExperienceItem[] = [
     employment: "Permanent",
     period: "Nov 2021 - Jan 2025",
     location: "Tokyo, Japan",
+    summary:
+      "Delivered optimization and integration systems for energy pricing workflows, including business logic, APIs, and OpenADR VEN projects.",
     highlights: [
-      "Researched electricity pricing problems and implemented core business logic for optimization workflows.",
-      "Created and deployed optimization modules using Mixed-Integer Nonlinear Programming to improve pricing strategies.",
-      "Developed API interfaces for integration with client platforms.",
-      "Deployed, maintained, and resolved bugs in OpenADR VEN projects.",
-      "Refactored project architecture to remove single points of failure.",
+      "Implemented optimization modules using Mixed-Integer Nonlinear Programming for pricing strategy workflows.",
+      "Built API interfaces for client-platform integration and maintained OpenADR VEN projects.",
+      "Refactored architecture to reduce single points of failure and improve operational reliability.",
     ],
-    skills: ["Machine Learning", "Python", "Optimization", "MINLP", "OpenADR", "API design"],
+    skills: ["Python", "Optimization", "MINLP", "OpenADR", "API design", "Reliability"],
   },
   {
     role: "Machine Learning Engineer",
@@ -130,12 +174,14 @@ export const experience: ExperienceItem[] = [
     employment: "Permanent",
     period: "Nov 2019 - Nov 2021",
     location: "Kathmandu, Nepal",
+    summary:
+      "Led delivery of machine-learning-backed APIs and cloud services, bridging implementation architecture with client-facing product needs.",
     highlights: [
-      "Led end-to-end project lifecycles as a team lead, from planning through delivery.",
-      "Collaborated with system architects to define implementation architecture aligned with client needs.",
-      "Developed RESTful APIs that integrated machine learning functionality into client applications.",
+      "Led end-to-end project lifecycles from planning through production delivery.",
+      "Collaborated with architects to define implementation plans aligned with client constraints.",
+      "Developed REST APIs and cloud integrations that exposed ML functionality to applications.",
     ],
-    skills: ["AWS Lambda", "Amazon EC2", "Machine Learning", "REST APIs", "Team leadership"],
+    skills: ["Machine learning", "REST APIs", "AWS Lambda", "Amazon EC2", "Team leadership"],
   },
   {
     role: "Machine Learning and OCR Engineer",
@@ -144,11 +190,12 @@ export const experience: ExperienceItem[] = [
     employment: "Full-time",
     period: "Jul 2018 - Nov 2019",
     location: "Kathmandu, Nepal",
+    summary:
+      "Built OCR and document-intelligence workflows for scanned claims, combining extraction, classification, and operational interface improvements.",
     highlights: [
-      "Extracted characters from scanned paper claims using Tesseract, FineReader, and Cartouche.",
-      "Classified claims from extracted text using Random Forest models in WEKA.",
-      "Extracted information from claims using regular expressions and named entity recognition.",
-      "Improved manual keying interfaces to speed up operational workflows.",
+      "Extracted characters from scanned claims using Tesseract, FineReader, and Cartouche.",
+      "Classified extracted text with Random Forest models and extracted entities using rules and NER.",
+      "Improved manual keying interfaces to reduce operational friction.",
     ],
     skills: ["OCR", "Tesseract", "FineReader", "WEKA", "Random Forest", "NER"],
   },
@@ -156,24 +203,22 @@ export const experience: ExperienceItem[] = [
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Geospatial Data",
-    items: ["Mobility datasets", "People-flow analytics", "Geospatial joins", "Location intelligence", "Map-ready outputs"],
-  },
-  {
     title: "Data Engineering",
-    items: ["ETL/ELT pipelines", "Validation", "Normalization", "Aggregation", "Data quality", "Governance"],
+    description:
+      "Designing batch and streaming pipelines with explicit data contracts, validation, partitioning, orchestration, and observability.",
+    tools: ["Python", "Spark", "Kafka", "ETL/ELT", "Data quality", "Time-series features"],
   },
   {
-    title: "AI, ML, Optimization",
-    items: ["Machine learning", "MINLP", "Pricing optimization", "Random Forest", "Named entity recognition", "OCR"],
+    title: "Cloud & Infra",
+    description:
+      "Shipping data products on cloud infrastructure with cost-aware execution, containerized services, and production deployment habits.",
+    tools: ["AWS S3", "AWS Glue", "EC2", "Kubernetes", "ClickHouse", "Monitoring"],
   },
   {
-    title: "Backend and Cloud",
-    items: ["Python", "REST APIs", "AWS Lambda", "Amazon EC2", "OpenADR VEN", "Cloud applications"],
-  },
-  {
-    title: "Delivery",
-    items: ["Stakeholder deliverables", "Dashboards", "CSV data products", "Monitoring", "Performance tuning", "Cost optimization"],
+    title: "Geospatial",
+    description:
+      "Turning raw mobility traces into spatially indexed, map-ready analytics for people-flow, OD movement, road volume, and POI footfall.",
+    tools: ["H3", "GeoPandas", "Spatial joins", "Mobility data", "Maps", "Location intelligence"],
   },
 ];
 
@@ -183,76 +228,123 @@ export const education: EducationItem[] = [
     institution: "Tribhuvan University",
     location: "Nepal",
     description:
-      "Bachelor of Science in Computer Science and Information Technology, grounding later work in software systems, data, and applied machine learning.",
-  },
-];
-
-export const services: ServiceItem[] = [
-  {
-    title: "Geospatial data platforms",
-    description: "Scalable ingestion, preprocessing, enrichment, and analysis workflows for mobility and location datasets.",
-  },
-  {
-    title: "AI/ML systems",
-    description: "Production-oriented machine learning integrations, feature pipelines, and applied model workflows.",
-  },
-  {
-    title: "Optimization workflows",
-    description: "Business logic and optimization modules for pricing, decision support, and system integration.",
-  },
-  {
-    title: "Cloud data applications",
-    description: "APIs, dashboards, exports, and cloud-hosted services that make analytical systems usable by teams.",
+      "Bachelor of Science in Computer Science and Information Technology, grounding later work in software systems, data platforms, and applied machine learning.",
   },
 ];
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: "Mobility Data Platform",
-    context: "Geospatial data engineering",
+    title: "Mobility Data Foundation",
+    context: "GPS-scale geospatial pipelines",
     company: {
       label: "LocationMind",
       href: "https://locationmind.com/",
     },
-    description:
-      "Built ingestion and transformation workflows that turn raw mobility datasets into reusable analytical foundations.",
-    outcomes: [
-      "Standardized raw location inputs into reusable analytical datasets.",
-      "Added quality checks, normalization, aggregation, and geospatial enrichment.",
-      "Produced data products ready for analysis, visualization, and downstream modeling.",
+    problem:
+      "Raw mobility inputs are noisy, high-volume, and difficult to reuse across research, consulting, analytics, and product workflows.",
+    solution:
+      "Designed reproducible ingestion and transformation layers that validate, normalize, aggregate, enrich, and prepare location records for downstream analytics.",
+    impact: [
+      "Reduced repeated preprocessing work by standardizing analytical datasets.",
+      "Improved confidence in outputs through validation, documentation, and repeatable transformations.",
+      "Created foundations for maps, dashboards, CSV exports, and model features.",
     ],
-    tags: ["ETL/ELT", "Geospatial", "Data quality", "Time series"],
+    stack: ["Python", "Spark", "AWS S3", "AWS Glue", "GeoPandas", "H3", "Data quality"],
+    architecture: ["Raw GPS", "Validation", "Spatial enrichment", "Feature tables", "Analytics outputs"],
   },
   {
-    title: "People-Flow Analytics Outputs",
-    context: "Location intelligence products",
+    title: "People-Flow Analytics Products",
+    context: "Urban planning and location intelligence",
     company: {
       label: "LocationMind",
       href: "https://locationmind.com/",
     },
-    description:
-      "Turned movement data into stakeholder-ready analytical outputs for research, consulting, and product workflows.",
-    outcomes: [
-      "Modeled people-flow patterns for dashboards, maps, and CSV exports.",
-      "Supported research, consulting, and product workflows with reproducible data outputs.",
-      "Connected data engineering work to AI-assisted mobility use cases.",
+    problem:
+      "Urban and mobility teams need reliable views of movement patterns without manually interpreting raw GPS trajectories.",
+    solution:
+      "Built analytical outputs for OD movement, road-volume intensity, and POI-footfall patterns using spatial aggregation and map-ready data products.",
+    impact: [
+      "Translated movement signals into decision-ready geospatial outputs.",
+      "Supported stakeholder workflows across research, consulting, and product teams.",
+      "Made repeated mobility analysis easier to reproduce and compare over time.",
     ],
-    tags: ["People flow", "Dashboards", "Maps", "Data products"],
+    stack: ["Python", "H3", "GeoPandas", "ClickHouse", "Maps", "CSV products"],
+    architecture: ["GPS events", "Spatial indexing", "OD / volume / footfall", "Maps", "Stakeholder delivery"],
   },
   {
-    title: "Energy Pricing Optimization",
-    context: "AI and optimization systems",
+    title: "Energy Pricing Optimization System",
+    context: "Optimization and platform integration",
     company: {
       label: "GridSolutions",
       href: "https://gridsolutions.co.jp/",
     },
-    description:
-      "Implemented optimization and integration workflows for electricity pricing systems.",
-    outcomes: [
-      "Implemented optimization modules using Mixed-Integer Nonlinear Programming.",
-      "Built API interfaces for client-platform integration.",
-      "Improved reliability by refactoring architecture and maintaining OpenADR VEN projects.",
+    problem:
+      "Pricing workflows needed optimization logic that could be integrated into operational systems and maintained over time.",
+    solution:
+      "Implemented optimization modules, API interfaces, and OpenADR-related integrations while improving architecture reliability.",
+    impact: [
+      "Moved optimization research closer to production workflows.",
+      "Created integration surfaces for client platforms.",
+      "Reduced operational risk by refactoring away single points of failure.",
     ],
-    tags: ["MINLP", "Python", "APIs", "OpenADR"],
+    stack: ["Python", "MINLP", "REST APIs", "OpenADR", "Optimization", "System refactoring"],
+    architecture: ["Business inputs", "Optimization module", "API layer", "Client systems", "Operations"],
+  },
+  {
+    title: "Document Intelligence Pipeline",
+    context: "OCR and operational automation",
+    company: {
+      label: "Smart Data Solutions",
+      href: "https://sdata.us/",
+    },
+    problem:
+      "Scanned claims required structured extraction and classification before they could move efficiently through operational workflows.",
+    solution:
+      "Combined OCR extraction, text classification, rule-based extraction, NER, and interface improvements to support faster manual review.",
+    impact: [
+      "Improved the path from scanned documents to structured operational data.",
+      "Reduced friction for manual keying workflows.",
+      "Connected ML extraction with practical back-office usability.",
+    ],
+    stack: ["OCR", "Tesseract", "FineReader", "WEKA", "Random Forest", "NER"],
+    architecture: ["Scanned claims", "OCR", "Classification", "Entity extraction", "Review interface"],
+  },
+];
+
+export const architectureSystems: ArchitectureSystem[] = [
+  {
+    title: "Mobility Data Lakehouse",
+    description:
+      "A reusable pattern for turning high-volume GPS data into analytics-ready spatial features and product outputs.",
+    flow: ["Sources", "Kafka / batch ingest", "S3 raw zone", "Spark + Glue", "H3 feature marts", "ClickHouse / APIs"],
+    principles: ["Schema contracts", "Partition-aware processing", "Spatial indexing", "Cost-aware compute", "Observable outputs"],
+  },
+  {
+    title: "Geospatial Product Layer",
+    description:
+      "A serving layer designed for teams that need fast comparison across movement metrics, time windows, and geographic cells.",
+    flow: ["Feature tables", "Aggregation jobs", "ClickHouse", "Map tiles / CSV", "Dashboards", "Decision workflows"],
+    principles: ["Low-latency reads", "Reproducible exports", "Map-ready geometry", "Clear lineage", "Stakeholder trust"],
+  },
+];
+
+export const insights: InsightItem[] = [
+  {
+    title: "Designing H3 Feature Tables for Mobility Analytics",
+    description:
+      "How to choose resolution, partitioning, and aggregation boundaries when GPS events need to become reusable spatial features.",
+    status: "Planned",
+  },
+  {
+    title: "Data Quality Checks That Matter for GPS Pipelines",
+    description:
+      "Practical validation patterns for timestamp consistency, coordinate sanity, duplicate trajectories, and downstream trust.",
+    status: "Planned",
+  },
+  {
+    title: "ClickHouse for Geospatial Data Products",
+    description:
+      "Where columnar serving fits after Spark transformations, and how to think about query shape, rollups, and product latency.",
+    status: "Planned",
   },
 ];

@@ -1,65 +1,68 @@
 import Image from "next/image";
 
 import { ActiveNav } from "@/app/active-nav";
+import { Reveal } from "@/app/reveal";
 import {
+  architectureSystems,
   caseStudies,
   education,
   experience,
   heroVisual,
+  insights,
   links,
+  metrics,
   profile,
-  services,
   skillGroups,
+  techStack,
 } from "@/lib/content";
 
 const navItems = [
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Architecture", href: "#architecture" },
   { label: "Skills", href: "#skills" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
+  { label: "Experience", href: "#experience" },
+  { label: "Insights", href: "#insights" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-20 border-b border-line bg-surface/95 backdrop-blur">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <a href="#top" className="font-semibold text-foreground">
+    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+      <header className="sticky top-0 z-20 border-b border-line/80 bg-surface/90 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+          <a href="#top" className="font-semibold tracking-tight text-foreground">
             {profile.name}
           </a>
           <ActiveNav items={navItems} />
         </nav>
       </header>
 
-      <section id="top" className="scroll-mt-20 border-b border-line bg-surface">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-16 xl:py-20">
-          <div className="flex flex-col justify-center">
-            <p className="mb-5 max-w-max border-l-4 border-accent bg-orange-50 px-4 py-2 text-sm font-medium text-accent-strong">
+      <section id="top" className="relative scroll-mt-20 border-b border-line bg-surface">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(234,88,12,0.11),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(14,165,233,0.12),transparent_30%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:py-16">
+          <Reveal>
+            <p className="inline-flex border border-orange-200 bg-orange-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-strong">
               {profile.location} / {profile.role}
             </p>
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.08] text-foreground">
-              {profile.name}
-            </h1>
-            <p className="mt-5 max-w-2xl text-xl leading-8 text-foreground">
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-tight text-foreground md:text-5xl">
               {profile.headline}
-            </p>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{profile.bio}</p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            </h1>
+            <p className="mt-6 max-w-2xl text-xl leading-8 text-muted">{profile.subheadline}</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted">{profile.valueProposition}</p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 text-sm font-semibold text-white transition hover:bg-accent-strong"
                 href={`mailto:${profile.email}`}
               >
-                Contact by email
+                Contact
               </a>
               <a
                 className="inline-flex h-12 items-center justify-center rounded-md border border-accent bg-surface px-5 text-sm font-semibold text-accent transition hover:bg-orange-50"
-                href={profile.meetingUrl}
-                target="_blank"
-                rel="noreferrer"
+                href="#projects"
               >
-                Book a meeting
+                View projects
               </a>
               <a
                 className="inline-flex h-12 items-center justify-center rounded-md border border-line bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
@@ -67,204 +70,269 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                View GitHub
+                GitHub
               </a>
-              {profile.resumeUrl ? (
-                <a
-                  className="inline-flex h-12 items-center justify-center rounded-md border border-line bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
-                  href={profile.resumeUrl}
-                >
-                  Resume
-                </a>
-              ) : null}
             </div>
-          </div>
 
-          <aside className="border border-line bg-background p-2">
-            <div className="relative h-[320px] overflow-hidden bg-stone-100 sm:h-[420px] lg:h-[560px] xl:h-[600px]">
-              <Image
-                src={heroVisual.src}
-                alt={heroVisual.alt}
-                fill
-                priority
-                sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 54vw, calc(100vw - 40px)"
-                className="object-cover"
-              />
+            <div className="mt-8 flex flex-wrap gap-2">
+              {techStack.map((item) => (
+                <span key={item} className="border border-line bg-background/80 px-3 py-1.5 text-sm text-muted">
+                  {item}
+                </span>
+              ))}
             </div>
-          </aside>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="border border-line bg-background p-2 shadow-[0_24px_80px_rgba(28,25,23,0.10)]">
+              <div className="relative h-[320px] overflow-hidden bg-stone-100 sm:h-[420px] lg:h-[520px]">
+                <Image
+                  src={heroVisual.src}
+                  alt={heroVisual.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 54vw, calc(100vw - 40px)"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="relative mx-auto grid max-w-7xl gap-px border-t border-line bg-line px-5 md:grid-cols-4">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="bg-surface py-6">
+              <p className="font-mono text-2xl font-semibold text-foreground">{metric.value}</p>
+              <p className="mt-2 max-w-xs text-sm leading-6 text-muted">{metric.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section id="experience" className="scroll-mt-20 border-b border-line">
-        <SectionHeader
-          eyebrow="Experience"
-          title="Recent work across geospatial data, AI systems, and applied optimization."
-          description="The through-line is production work: turning raw data, models, and business logic into systems people can use."
-        />
-        <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-20">
-          {experience.map((item) => (
-            <article key={`${item.company}-${item.role}`} className="border border-line bg-surface p-6">
-              <div className="grid gap-6 lg:grid-cols-[0.9fr_1.4fr]">
-                <div>
-                  <p className="text-sm font-medium text-accent-strong">{item.period}</p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-8">{item.role}</h3>
-                  <p className="mt-2 text-muted">
-                    {item.companyUrl ? (
-                      <a
-                        className="font-medium text-foreground underline decoration-orange-300/60 underline-offset-4 transition hover:text-accent"
-                        href={item.companyUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {item.company}
+      <section id="about" className="scroll-mt-20 border-b border-line">
+        <SectionShell
+          eyebrow="About"
+          title="I solve the messy middle between raw mobility data and decision-ready geospatial products."
+          description={profile.about}
+        >
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              ["Systems thinking", "I start with data contracts, lineage, failure modes, and operational cost instead of treating pipelines as scripts."],
+              ["Spatial fluency", "I work with coordinates, grids, joins, time windows, OD movement, road volume, and POI footfall as first-class data concerns."],
+              ["Product mindset", "I care about the final consumer: analysts, researchers, consultants, dashboards, APIs, and map-based workflows."],
+            ].map(([title, description], index) => (
+              <Reveal key={title} delay={index * 0.04}>
+                <article className="h-full border border-line bg-surface p-6">
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className="mt-3 leading-7 text-muted">{description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
+      </section>
+
+      <section id="projects" className="scroll-mt-20 border-b border-line bg-surface">
+        <SectionShell
+          eyebrow="Case studies"
+          title="Systems work framed by problem, solution, stack, and impact."
+          description="These are public-safe summaries of real production patterns: ingestion, spatial enrichment, serving layers, optimization, and operational workflows."
+        >
+          <div className="grid gap-5">
+            {caseStudies.map((study, index) => (
+              <Reveal key={study.title} delay={index * 0.04}>
+                <article className="grid gap-6 border border-line bg-background p-6 lg:grid-cols-[0.8fr_1.2fr]">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent-strong">
+                      {study.company ? (
+                        <>
+                          <a href={study.company.href} target="_blank" rel="noreferrer" className="underline decoration-orange-300/70">
+                            {study.company.label}
+                          </a>{" "}
+                          /{" "}
+                        </>
+                      ) : null}
+                      {study.context}
+                    </p>
+                    <h3 className="mt-4 text-3xl font-semibold tracking-tight">{study.title}</h3>
+                    <div className="mt-6">
+                      <ArchitectureFlow steps={study.architecture} />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-5">
+                    <ProjectBlock label="Problem" value={study.problem} />
+                    <ProjectBlock label="Solution" value={study.solution} />
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">Impact</p>
+                      <ul className="mt-3 grid gap-2 text-muted">
+                        {study.impact.map((item) => (
+                          <li key={item} className="flex gap-3 leading-7">
+                            <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <TagList items={study.stack} />
+                    {study.githubUrl ? (
+                      <a className="text-sm font-semibold text-accent" href={study.githubUrl} target="_blank" rel="noreferrer">
+                        View repository
                       </a>
-                    ) : (
-                      item.company
-                    )}{" "}
-                    / {item.employment}
-                  </p>
-                  <p className="mt-1 text-sm text-muted">{item.location}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {item.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-medium text-accent-strong"
-                      >
-                        {skill}
+                    ) : null}
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
+      </section>
+
+      <section id="architecture" className="scroll-mt-20 border-b border-line">
+        <SectionShell
+          eyebrow="System design"
+          title="Architecture patterns for geospatial big-data systems."
+          description="The site now exposes architecture thinking directly instead of hiding it inside tool lists."
+        >
+          <div className="grid gap-5 lg:grid-cols-2">
+            {architectureSystems.map((system, index) => (
+              <Reveal key={system.title} delay={index * 0.05}>
+                <article className="h-full border border-line bg-surface p-6">
+                  <h3 className="text-2xl font-semibold tracking-tight">{system.title}</h3>
+                  <p className="mt-3 leading-7 text-muted">{system.description}</p>
+                  <div className="mt-6">
+                    <ArchitectureFlow steps={system.flow} />
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {system.principles.map((principle) => (
+                      <span key={principle} className="border border-line bg-background px-3 py-1 text-xs font-medium text-muted">
+                        {principle}
                       </span>
                     ))}
                   </div>
-                </div>
-                <ul className="space-y-3 text-muted">
-                  {item.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3 leading-7">
-                      <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="education" className="scroll-mt-20 border-b border-line bg-surface">
-        <SectionHeader
-          eyebrow="Education"
-          title="Academic foundation in computer science and information technology."
-          description="Formal computer science training that supports the later career arc across software, data systems, machine learning, and cloud applications."
-        />
-        <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-20">
-          {education.map((item) => (
-            <article key={`${item.degree}-${item.institution}`} className="border border-line bg-background p-6">
-              <div className="grid gap-5 lg:grid-cols-[0.9fr_1.4fr]">
-                <div>
-                  <p className="text-sm font-medium text-accent-strong">{item.location}</p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-8">{item.degree}</h3>
-                  <p className="mt-2 text-muted">{item.institution}</p>
-                </div>
-                <p className="max-w-3xl leading-7 text-muted">{item.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
       </section>
 
       <section id="skills" className="scroll-mt-20 border-b border-line bg-surface">
-        <SectionHeader
+        <SectionShell
           eyebrow="Skills"
-          title="A practical stack for data-heavy systems."
-          description="Grouped from production roles across geospatial analytics, machine learning, cloud services, and delivery."
-        />
-        <div className="mx-auto grid max-w-6xl gap-4 px-5 pb-20 md:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group) => (
-            <article key={group.title} className="border border-line bg-background p-5">
-              <h3 className="text-lg font-semibold">{group.title}</h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="border border-line bg-surface px-3 py-1 text-sm text-muted">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
+          title="Grouped by the work they enable, not by tool names."
+          description="The stack matters because it supports large-scale movement data, spatial context, reliable pipelines, and fast serving layers."
+        >
+          <div className="grid gap-5 lg:grid-cols-3">
+            {skillGroups.map((group, index) => (
+              <Reveal key={group.title} delay={index * 0.04}>
+                <article className="h-full border border-line bg-background p-6">
+                  <h3 className="text-2xl font-semibold tracking-tight">{group.title}</h3>
+                  <p className="mt-3 min-h-[112px] leading-7 text-muted">{group.description}</p>
+                  <TagList items={group.tools} />
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
       </section>
 
-      <section id="services" className="scroll-mt-20 border-b border-line">
-        <SectionHeader
-          eyebrow="Services"
-          title="Technical services around data, AI, and cloud applications."
-          description="Useful for collaboration, technical discussion, and projects where data systems need to become reliable products."
-        />
-        <div className="mx-auto grid max-w-6xl gap-4 px-5 pb-20 md:grid-cols-2">
-          {services.map((service) => (
-            <article key={service.title} className="border border-line bg-surface p-6">
-              <h3 className="text-xl font-semibold">{service.title}</h3>
-              <p className="mt-3 leading-7 text-muted">{service.description}</p>
-            </article>
-          ))}
-        </div>
+      <section id="experience" className="scroll-mt-20 border-b border-line">
+        <SectionShell
+          eyebrow="Experience timeline"
+          title="A career arc from ML systems to geospatial big-data platforms."
+          description="The through-line is production work: data quality, integration, cloud systems, operational reliability, and useful outputs."
+        >
+          <div className="grid gap-5">
+            {experience.map((item, index) => (
+              <Reveal key={`${item.company}-${item.role}`} delay={index * 0.04}>
+                <article className="grid gap-6 border border-line bg-surface p-6 lg:grid-cols-[0.34fr_0.66fr]">
+                  <div>
+                    <p className="text-sm font-medium text-accent-strong">{item.period}</p>
+                    <h3 className="mt-3 text-2xl font-semibold leading-8">{item.role}</h3>
+                    <p className="mt-2 text-muted">
+                      {item.companyUrl ? (
+                        <a
+                          className="font-medium text-foreground underline decoration-orange-300/60 underline-offset-4 transition hover:text-accent"
+                          href={item.companyUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {item.company}
+                        </a>
+                      ) : (
+                        item.company
+                      )}{" "}
+                      / {item.employment}
+                    </p>
+                    <p className="mt-1 text-sm text-muted">{item.location}</p>
+                  </div>
+                  <div>
+                    <p className="leading-7 text-muted">{item.summary}</p>
+                    <ul className="mt-5 grid gap-2 text-muted">
+                      {item.highlights.map((highlight) => (
+                        <li key={highlight} className="flex gap-3 leading-7">
+                          <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <TagList items={item.skills} />
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
       </section>
 
-      <section id="work" className="scroll-mt-20 border-b border-line bg-surface">
-        <SectionHeader
-          eyebrow="Case studies"
-          title="Selected examples from recent company work."
-          description="A concise view of technical scope, outcomes, and delivery patterns across geospatial data, analytics, and optimization systems."
-        />
-        <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-20 lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <article key={study.title} className="flex min-h-[420px] flex-col border border-line bg-background p-6">
-              <p className="text-sm font-medium text-accent-strong">
-                {study.company ? (
-                  <>
-                    <a
-                      className="underline decoration-orange-300/60 underline-offset-4"
-                      href={study.company.href}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {study.company.label}
-                    </a>{" "}
-                    /{" "}
-                  </>
-                ) : null}
-                {study.context}
-              </p>
-              <h3 className="mt-4 text-2xl font-semibold leading-8">{study.title}</h3>
-              <p className="mt-4 leading-7 text-muted">{study.description}</p>
-              <ul className="mt-6 space-y-3 text-sm text-muted">
-                {study.outcomes.map((outcome) => (
-                  <li key={outcome} className="flex gap-3 leading-6">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                    <span>{outcome}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto flex flex-wrap gap-2 pt-8">
-                {study.tags.map((tag) => (
-                  <span key={tag} className="border border-line bg-surface px-3 py-1 text-xs font-medium text-muted">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+      <section id="insights" className="scroll-mt-20 border-b border-line bg-surface">
+        <SectionShell
+          eyebrow="Tech blog / insights"
+          title="Writing topics that reinforce the geospatial systems niche."
+          description="These placeholders set up a future writing section without pretending posts already exist."
+        >
+          <div className="grid gap-5 md:grid-cols-3">
+            {insights.map((item, index) => (
+              <Reveal key={item.title} delay={index * 0.04}>
+                <article className="h-full border border-line bg-background p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-strong">{item.status}</p>
+                  <h3 className="mt-4 text-xl font-semibold leading-7">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-muted">{item.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </SectionShell>
+      </section>
+
+      <section id="education" className="scroll-mt-20 border-b border-line">
+        <SectionShell
+          eyebrow="Education"
+          title="Computer science foundation for systems, data, and applied ML."
+          description="Formal computer science training supports the later career arc across software systems, data platforms, machine learning, and cloud applications."
+        >
+          {education.map((item) => (
+            <article key={`${item.degree}-${item.institution}`} className="border border-line bg-surface p-6">
+              <p className="text-sm font-medium text-accent-strong">{item.location}</p>
+              <h3 className="mt-3 text-2xl font-semibold leading-8">{item.degree}</h3>
+              <p className="mt-2 text-muted">{item.institution}</p>
+              <p className="mt-5 max-w-3xl leading-7 text-muted">{item.description}</p>
             </article>
           ))}
-        </div>
+        </SectionShell>
       </section>
 
       <section id="contact" className="scroll-mt-20 bg-foreground text-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.9fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase text-orange-300">Contact</p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-[1.15]">
-              Open to collaboration and technical discussion.
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.9fr]">
+          <Reveal>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange-300">Contact</p>
+            <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-[1.12] tracking-tight">
+              Open to geospatial data platforms, mobility analytics, and systems-heavy engineering work.
             </h2>
             <p className="mt-5 max-w-xl leading-7 text-stone-300">
-              Reach out about geospatial data platforms, AI/ML systems, optimization workflows, or cloud data applications.
+              Reach out if the problem involves high-volume data, spatial analytics, distributed pipelines, or turning complex
+              data into something a product team can operate.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
@@ -282,40 +350,84 @@ export default function Home() {
                 Book a meeting
               </a>
             </div>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <ContactBlock title="Profiles" items={links.filter((link) => link.label !== "Email")} showIcons />
-            <ContactBlock
-              title="Details"
-              items={[
-                { label: profile.location, href: "#top" },
-                { label: "BSc CSIT, Tribhuvan University", href: "#education" },
-                { label: profile.languages.join(" / "), href: "#skills" },
-              ]}
-            />
-          </div>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <ContactBlock title="Profiles" items={links.filter((link) => link.label !== "Email")} showIcons />
+              <ContactBlock
+                title="Details"
+                items={[
+                  { label: profile.location, href: "#top" },
+                  { label: "BSc CSIT, Tribhuvan University", href: "#education" },
+                  { label: profile.languages.join(" / "), href: "#skills" },
+                ]}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>
   );
 }
 
-function SectionHeader({
+function SectionShell({
   eyebrow,
   title,
   description,
+  children,
 }: {
   eyebrow: string;
   title: string;
   description: string;
+  children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-6xl px-5 py-16">
-      <p className="text-sm font-semibold uppercase text-accent-strong">{eyebrow}</p>
-      <div className="mt-4 grid gap-5 lg:grid-cols-[0.95fr_1fr]">
-        <h2 className="text-4xl font-semibold leading-[1.12]">{title}</h2>
-        <p className="max-w-2xl text-lg leading-8 text-muted">{description}</p>
-      </div>
+    <div className="mx-auto max-w-7xl px-5 py-20">
+      <Reveal>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent-strong">{eyebrow}</p>
+        <div className="mt-4 grid gap-5 lg:grid-cols-[0.92fr_1fr]">
+          <h2 className="text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl">{title}</h2>
+          <p className="max-w-2xl text-lg leading-8 text-muted">{description}</p>
+        </div>
+      </Reveal>
+      <div className="mt-12">{children}</div>
+    </div>
+  );
+}
+
+function ProjectBlock({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">{label}</p>
+      <p className="mt-2 leading-7 text-muted">{value}</p>
+    </div>
+  );
+}
+
+function TagList({ items }: { items: string[] }) {
+  return (
+    <div className="mt-5 flex flex-wrap gap-2">
+      {items.map((item) => (
+        <span key={item} className="border border-line bg-surface px-3 py-1 text-xs font-medium text-muted">
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ArchitectureFlow({ steps }: { steps: string[] }) {
+  return (
+    <div className="grid gap-2">
+      {steps.map((step, index) => (
+        <div key={`${step}-${index}`} className="flex items-center gap-2">
+          <div className="min-w-0 flex-1 border border-line bg-surface px-3 py-2 text-sm font-medium text-foreground">
+            {step}
+          </div>
+          {index < steps.length - 1 ? <span className="font-mono text-sm text-accent">-&gt;</span> : null}
+        </div>
+      ))}
     </div>
   );
 }
