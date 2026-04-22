@@ -265,7 +265,7 @@ export default function Home() {
             </a>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            <ContactBlock title="Profiles" items={links.filter((link) => link.label !== "Email")} />
+            <ContactBlock title="Profiles" items={links.filter((link) => link.label !== "Email")} showIcons />
             <ContactBlock
               title="Details"
               items={[
@@ -310,7 +310,15 @@ function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-function ContactBlock({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+function ContactBlock({
+  title,
+  items,
+  showIcons = false,
+}: {
+  title: string;
+  items: { label: string; href: string }[];
+  showIcons?: boolean;
+}) {
   return (
     <div className="border border-stone-700 p-5">
       <h3 className="font-semibold text-white">{title}</h3>
@@ -318,15 +326,58 @@ function ContactBlock({ title, items }: { title: string; items: { label: string;
         {items.map((item) => (
           <a
             key={item.label}
-            className="text-stone-300 transition hover:text-orange-300"
+            className="group flex items-center gap-3 text-stone-300 transition hover:text-orange-300"
             href={item.href}
             target={item.href.startsWith("http") ? "_blank" : undefined}
             rel={item.href.startsWith("http") ? "noreferrer" : undefined}
           >
+            {showIcons ? (
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-stone-700 text-stone-300 transition group-hover:border-orange-300 group-hover:text-orange-300">
+                <ProfileIcon label={item.label} />
+              </span>
+            ) : null}
             {item.label}
           </a>
         ))}
       </div>
     </div>
+  );
+}
+
+function ProfileIcon({ label }: { label: string }) {
+  const iconClass = "h-4 w-4";
+
+  if (label === "GitHub") {
+    return (
+      <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          fillRule="evenodd"
+          d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.95c.85 0 1.7.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.13 10.13 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z"
+          clipRule="evenodd"
+        />
+      </svg>
+    );
+  }
+
+  if (label === "LinkedIn") {
+    return (
+      <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M5.37 7.79H2.25V21h3.12V7.79ZM3.81 2.5C2.8 2.5 2 3.31 2 4.31s.8 1.82 1.81 1.82 1.82-.82 1.82-1.82S4.82 2.5 3.81 2.5ZM22 13.39c0-3.55-1.89-5.2-4.41-5.2a3.82 3.82 0 0 0-3.45 1.9h-.04v-2.3h-3V21h3.13v-6.53c0-1.72.32-3.38 2.45-3.38 2.1 0 2.13 1.96 2.13 3.49V21H22v-7.61ZM8.86 7.79H5.74V21h3.12V7.79Z" />
+      </svg>
+    );
+  }
+
+  if (label === "Facebook") {
+    return (
+      <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.77l-.44 2.91h-2.33V22C18.34 21.24 22 17.08 22 12.06Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17 17 7M8 7h9v9" />
+    </svg>
   );
 }
