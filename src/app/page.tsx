@@ -1,7 +1,10 @@
+import Image from "next/image";
+
 import {
   caseStudies,
   education,
   experience,
+  heroVisual,
   links,
   profile,
   services,
@@ -37,7 +40,7 @@ export default function Home() {
       </header>
 
       <section id="top" className="border-b border-line bg-surface">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-16 xl:py-20">
           <div className="flex flex-col justify-center">
             <p className="mb-5 max-w-max border-l-4 border-accent bg-orange-50 px-4 py-2 text-sm font-medium text-accent-strong">
               {profile.location} / {profile.role}
@@ -75,26 +78,16 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="hidden border border-line bg-background p-6 lg:block">
-            <p className="text-sm font-semibold uppercase text-accent-strong">Current focus</p>
-            <div className="mt-6 space-y-5">
-              {[
-                "Mobility and geospatial data pipelines",
-                "People-flow analysis and visualization",
-                "AI/ML systems for applied decision workflows",
-                "Cloud data products for technical teams",
-              ].map((item) => (
-                <div key={item} className="flex gap-4">
-                  <span className="mt-2 h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
-                  <p className="leading-7 text-muted">{item}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6">
-              <Stat value="8+" label="Years in ML, AI, and data" />
-              <Stat value="4" label="Professional roles" />
-              <Stat value="2" label="Languages" />
-              <Stat value="Tokyo" label="Current base" />
+          <aside className="border border-line bg-background p-2">
+            <div className="relative h-[320px] overflow-hidden bg-stone-100 sm:h-[420px] lg:h-[560px] xl:h-[600px]">
+              <Image
+                src={heroVisual.src}
+                alt={heroVisual.alt}
+                fill
+                priority
+                sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 54vw, calc(100vw - 40px)"
+                className="object-cover"
+              />
             </div>
           </aside>
         </div>
@@ -297,15 +290,6 @@ function SectionHeader({
         <h2 className="text-4xl font-semibold leading-[1.12]">{title}</h2>
         <p className="max-w-2xl text-lg leading-8 text-muted">{description}</p>
       </div>
-    </div>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <p className="font-mono text-2xl font-semibold text-foreground">{value}</p>
-      <p className="mt-1 text-sm leading-5 text-muted">{label}</p>
     </div>
   );
 }

@@ -39,6 +39,11 @@ export type CaseStudy = {
   tags: string[];
 };
 
+export type HeroVisual = {
+  src: string;
+  alt: string;
+};
+
 export const profile = {
   name: "Bikash Sapkota",
   role: "Geospatial Big Data Engineer",
@@ -49,6 +54,11 @@ export const profile = {
   resumeUrl: null as string | null,
   bio:
     "I build production data systems across geospatial analytics, AI/ML, and optimization. My work spans mobility ETL/ELT pipelines, people-flow analysis, pricing optimization, OpenADR integrations, and OCR-driven document intelligence.",
+};
+
+export const heroVisual: HeroVisual = {
+  src: "/images/urban-gps-planning.png",
+  alt: "Urban aerial map visualization with GPS movement arcs, road intensity corridors, and footfall hotspots.",
 };
 
 export const links: LinkItem[] = [
