@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { ActiveNav } from "@/app/active-nav";
 import {
   caseStudies,
   education,
@@ -28,17 +29,11 @@ export default function Home() {
           <a href="#top" className="font-semibold text-foreground">
             {profile.name}
           </a>
-          <div className="hidden items-center gap-6 text-sm text-muted md:flex">
-            {navItems.map((item) => (
-              <a key={item.href} className="transition hover:text-accent" href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </div>
+          <ActiveNav items={navItems} />
         </nav>
       </header>
 
-      <section id="top" className="border-b border-line bg-surface">
+      <section id="top" className="scroll-mt-20 border-b border-line bg-surface">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-16 xl:py-20">
           <div className="flex flex-col justify-center">
             <p className="mb-5 max-w-max border-l-4 border-accent bg-orange-50 px-4 py-2 text-sm font-medium text-accent-strong">
@@ -57,6 +52,14 @@ export default function Home() {
                 href={`mailto:${profile.email}`}
               >
                 Contact by email
+              </a>
+              <a
+                className="inline-flex h-12 items-center justify-center rounded-md border border-accent bg-surface px-5 text-sm font-semibold text-accent transition hover:bg-orange-50"
+                href={profile.meetingUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Book a meeting
               </a>
               <a
                 className="inline-flex h-12 items-center justify-center rounded-md border border-line bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
@@ -92,7 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="experience" className="border-b border-line">
+      <section id="experience" className="scroll-mt-20 border-b border-line">
         <SectionHeader
           eyebrow="Experience"
           title="Recent work across geospatial data, AI systems, and applied optimization."
@@ -106,7 +109,19 @@ export default function Home() {
                   <p className="text-sm font-medium text-accent-strong">{item.period}</p>
                   <h3 className="mt-3 text-2xl font-semibold leading-8">{item.role}</h3>
                   <p className="mt-2 text-muted">
-                    {item.company} / {item.employment}
+                    {item.companyUrl ? (
+                      <a
+                        className="font-medium text-foreground underline decoration-orange-300/60 underline-offset-4 transition hover:text-accent"
+                        href={item.companyUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.company}
+                      </a>
+                    ) : (
+                      item.company
+                    )}{" "}
+                    / {item.employment}
                   </p>
                   <p className="mt-1 text-sm text-muted">{item.location}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -134,7 +149,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="education" className="border-b border-line bg-surface">
+      <section id="education" className="scroll-mt-20 border-b border-line bg-surface">
         <SectionHeader
           eyebrow="Education"
           title="Academic foundation in computer science and information technology."
@@ -156,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="skills" className="border-b border-line bg-surface">
+      <section id="skills" className="scroll-mt-20 border-b border-line bg-surface">
         <SectionHeader
           eyebrow="Skills"
           title="A practical stack for data-heavy systems."
@@ -178,7 +193,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="border-b border-line">
+      <section id="services" className="scroll-mt-20 border-b border-line">
         <SectionHeader
           eyebrow="Services"
           title="Technical services around data, AI, and cloud applications."
@@ -194,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="border-b border-line bg-surface">
+      <section id="work" className="scroll-mt-20 border-b border-line bg-surface">
         <SectionHeader
           eyebrow="Case studies"
           title="Selected examples from recent company work."
@@ -203,7 +218,22 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-20 lg:grid-cols-3">
           {caseStudies.map((study) => (
             <article key={study.title} className="flex min-h-[420px] flex-col border border-line bg-background p-6">
-              <p className="text-sm font-medium text-accent-strong">{study.context}</p>
+              <p className="text-sm font-medium text-accent-strong">
+                {study.company ? (
+                  <>
+                    <a
+                      className="underline decoration-orange-300/60 underline-offset-4"
+                      href={study.company.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {study.company.label}
+                    </a>{" "}
+                    /{" "}
+                  </>
+                ) : null}
+                {study.context}
+              </p>
               <h3 className="mt-4 text-2xl font-semibold leading-8">{study.title}</h3>
               <p className="mt-4 leading-7 text-muted">{study.description}</p>
               <ul className="mt-6 space-y-3 text-sm text-muted">
@@ -226,7 +256,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="bg-foreground text-white">
+      <section id="contact" className="scroll-mt-20 bg-foreground text-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="text-sm font-semibold uppercase text-orange-300">Contact</p>
@@ -236,12 +266,22 @@ export default function Home() {
             <p className="mt-5 max-w-xl leading-7 text-stone-300">
               Reach out about geospatial data platforms, AI/ML systems, optimization workflows, or cloud data applications.
             </p>
-            <a
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 text-sm font-semibold text-white transition hover:bg-orange-500"
-              href={`mailto:${profile.email}`}
-            >
-              {profile.email}
-            </a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 text-sm font-semibold text-white transition hover:bg-orange-500"
+                href={`mailto:${profile.email}`}
+              >
+                {profile.email}
+              </a>
+              <a
+                className="inline-flex h-12 items-center justify-center rounded-md border border-orange-300 px-5 text-sm font-semibold text-orange-200 transition hover:bg-stone-800"
+                href={profile.meetingUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Book a meeting
+              </a>
+            </div>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <ContactBlock title="Profiles" items={links.filter((link) => link.label !== "Email")} showIcons />

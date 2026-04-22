@@ -7,6 +7,7 @@ export type LinkItem = {
 export type ExperienceItem = {
   role: string;
   company: string;
+  companyUrl?: string;
   employment: string;
   period: string;
   location: string;
@@ -34,6 +35,10 @@ export type ServiceItem = {
 export type CaseStudy = {
   title: string;
   context: string;
+  company?: {
+    label: string;
+    href: string;
+  };
   description: string;
   outcomes: string[];
   tags: string[];
@@ -50,6 +55,7 @@ export const profile = {
   headline: "Building data platforms for smart cities and urban planning.",
   location: "Tokyo, Japan",
   email: "hello@bikashsapkota.com",
+  meetingUrl: "https://calendar.app.google/w4uhT4E225E8cjHj6",
   languages: ["English", "Nepali"],
   resumeUrl: null as string | null,
   bio:
@@ -88,6 +94,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Big Data Engineer (GeoSpatial)",
     company: "LocationMind",
+    companyUrl: "https://locationmind.com/",
     employment: "Permanent",
     period: "Jan 2025 - Present",
     location: "Tokyo, Japan",
@@ -200,6 +207,10 @@ export const caseStudies: CaseStudy[] = [
   {
     title: "Mobility Data Platform",
     context: "Geospatial data engineering",
+    company: {
+      label: "LocationMind",
+      href: "https://locationmind.com/",
+    },
     description:
       "Built ingestion and transformation workflows that turn raw mobility datasets into reusable analytical foundations.",
     outcomes: [
@@ -212,6 +223,10 @@ export const caseStudies: CaseStudy[] = [
   {
     title: "People-Flow Analytics Outputs",
     context: "Location intelligence products",
+    company: {
+      label: "LocationMind",
+      href: "https://locationmind.com/",
+    },
     description:
       "Turned movement data into stakeholder-ready analytical outputs for research, consulting, and product workflows.",
     outcomes: [
