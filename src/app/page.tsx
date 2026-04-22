@@ -99,13 +99,15 @@ export default function Home() {
           </Reveal>
         </div>
 
-        <div className="relative mx-auto grid max-w-7xl gap-px border-t border-line bg-line px-5 md:grid-cols-4">
-          {metrics.map((metric) => (
-            <div key={metric.label} className="bg-surface py-6">
-              <p className="font-mono text-2xl font-semibold text-foreground">{metric.value}</p>
-              <p className="mt-2 max-w-xs text-sm leading-6 text-muted">{metric.label}</p>
-            </div>
-          ))}
+        <div className="relative mx-auto max-w-7xl px-5 pb-10">
+          <div className="grid border border-line bg-surface shadow-[0_10px_40px_rgba(15,23,42,0.04)] sm:grid-cols-2 lg:grid-cols-4">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="border-line px-4 py-4 sm:border-r last:border-r-0">
+                <p className="text-sm font-semibold tracking-tight text-foreground">{metric.value}</p>
+                <p className="mt-1 text-xs leading-5 text-muted">{metric.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -359,7 +361,7 @@ export default function Home() {
                 title="Details"
                 items={[
                   { label: profile.location, href: "#top" },
-                  { label: "BSc CSIT, Tribhuvan University", href: "#education" },
+                  { label: "BSc CSIT, Deerwalk Institute of Technology", href: "#education" },
                   { label: profile.languages.join(" / "), href: "#skills" },
                 ]}
               />

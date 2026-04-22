@@ -113,10 +113,10 @@ export const links: LinkItem[] = [
 ];
 
 export const metrics: MetricItem[] = [
-  { value: "8+", label: "years across data, ML, and production systems" },
-  { value: "GPS", label: "mobility pipelines and geospatial analytics" },
-  { value: "Cloud", label: "AWS-first data products and services" },
-  { value: "Tokyo", label: "based in Japan, working globally" },
+  { value: "8+ yrs", label: "data / ML systems" },
+  { value: "GPS-scale", label: "mobility analytics" },
+  { value: "AWS + Spark", label: "cloud data platforms" },
+  { value: "Tokyo", label: "Japan-based" },
 ];
 
 export const techStack = [
@@ -225,10 +225,10 @@ export const skillGroups: SkillGroup[] = [
 export const education: EducationItem[] = [
   {
     degree: "BSc CSIT",
-    institution: "Tribhuvan University",
+    institution: "Deerwalk Institute of Technology, Tribhuvan University",
     location: "Nepal",
     description:
-      "Bachelor of Science in Computer Science and Information Technology, grounding later work in software systems, data platforms, and applied machine learning.",
+      "Bachelor of Science in Computer Science and Information Technology from Deerwalk Institute of Technology, affiliated with Tribhuvan University, grounding later work in software systems, data platforms, and applied machine learning.",
   },
 ];
 
