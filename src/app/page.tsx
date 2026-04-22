@@ -177,10 +177,29 @@ export default function Home() {
                       </ul>
                     </div>
                     <TagList items={study.stack} />
-                    {study.githubUrl ? (
-                      <a className="text-sm font-semibold text-accent" href={study.githubUrl} target="_blank" rel="noreferrer">
-                        View repository
-                      </a>
+                    {study.serviceUrl || study.githubUrl ? (
+                      <div className="flex flex-wrap gap-3 border-t border-line pt-5">
+                        {study.serviceUrl ? (
+                          <a
+                            className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-sm font-semibold text-white transition hover:bg-accent-strong"
+                            href={study.serviceUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Request service
+                          </a>
+                        ) : null}
+                        {study.githubUrl ? (
+                          <a
+                            className="inline-flex h-10 items-center justify-center rounded-md border border-line px-4 text-sm font-semibold text-accent transition hover:border-accent"
+                            href={study.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            View repository
+                          </a>
+                        ) : null}
+                      </div>
                     ) : null}
                   </div>
                 </article>

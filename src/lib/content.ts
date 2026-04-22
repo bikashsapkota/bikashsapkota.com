@@ -47,6 +47,7 @@ export type CaseStudy = {
   impact: string[];
   stack: string[];
   architecture: string[];
+  serviceUrl?: string;
   githubUrl?: string;
 };
 
@@ -240,8 +241,9 @@ export const caseStudies: CaseStudy[] = [
     context: "GPS-scale geospatial pipelines",
     company: {
       label: "LocationMind",
-      href: "https://locationmind.com/#contact-us",
+      href: "https://locationmind.com/",
     },
+    serviceUrl: "https://locationmind.com/#contact-us",
     problem:
       "Raw mobility inputs are noisy, high-volume, and difficult to reuse across research, consulting, analytics, and product workflows.",
     solution:
@@ -259,8 +261,9 @@ export const caseStudies: CaseStudy[] = [
     context: "Urban planning and location intelligence",
     company: {
       label: "LocationMind",
-      href: "https://locationmind.com/#contact-us",
+      href: "https://locationmind.com/",
     },
+    serviceUrl: "https://locationmind.com/#contact-us",
     problem:
       "Urban and mobility teams need reliable views of movement patterns without manually interpreting raw GPS trajectories.",
     solution:
