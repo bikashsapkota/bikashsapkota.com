@@ -110,6 +110,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "AI Engineer",
     company: "GridSolutions Inc",
+    companyUrl: "https://gridsolutions.co.jp/",
     employment: "Permanent",
     period: "Nov 2021 - Jan 2025",
     location: "Tokyo, Japan",
@@ -125,6 +126,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Machine Learning Engineer",
     company: "Bottle",
+    companyUrl: "https://bottle.com.np/",
     employment: "Permanent",
     period: "Nov 2019 - Nov 2021",
     location: "Kathmandu, Nepal",
@@ -138,6 +140,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Machine Learning and OCR Engineer",
     company: "Smart Data Solutions",
+    companyUrl: "https://sdata.us/",
     employment: "Full-time",
     period: "Jul 2018 - Nov 2019",
     location: "Kathmandu, Nepal",
@@ -239,6 +242,10 @@ export const caseStudies: CaseStudy[] = [
   {
     title: "Energy Pricing Optimization",
     context: "AI and optimization systems",
+    company: {
+      label: "GridSolutions",
+      href: "https://gridsolutions.co.jp/",
+    },
     description:
       "Implemented optimization and integration workflows for electricity pricing systems.",
     outcomes: [
